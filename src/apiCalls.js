@@ -3,7 +3,7 @@ export const askChatGpt = (input) => {
     "model": "gpt-3.5-turbo",
     "messages": [{"role": "user", "content": input }]
   }
-  const mySecret = process.env['apikey'];
+  const mySecret = import.meta.env.VITE_API_KEY;
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Authorization", `Bearer ${mySecret}`);
@@ -16,8 +16,8 @@ export const askChatGpt = (input) => {
   };
 
   return fetch("https://api.openai.com/v1/chat/completions", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
+    .then(response => response.json())
+    .then(result => result)
     .catch(error => console.log('error', error));
 }
 

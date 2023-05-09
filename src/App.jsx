@@ -22,17 +22,25 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    askChatGpt(formInput).then((resp) => {
+      const ir = {
+        id: resp.id,
+        input: formInput,
+        response: resp.choices[0].message.content,
+      }
+      setInputResponse((prevState) => [...prevState, ir]);
+      setFormInput("");
+    })
   }
 
 
 
   return (
-    <>
+    <div className="m-3">
       <Form onSubmit={handleSubmit}>
         <FloatingLabel
           controlId="floatingInput"
           label="Gimme a Prompt"
-          className="m-3"
         >
           <Form.Control
             type="text"
@@ -44,12 +52,12 @@ export default function App() {
       </Form>
       {
         inputResponse.map((item) => (
-          <>
+          <div key={item.id}>
             <p>{item.input}</p>
             <p>{item.response}</p>
-          </>
+          </div>
         ))
       }
-    </>
+    </div>
   )
 }

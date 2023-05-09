@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import ChatCard from './components/ChatCard';
 import Form from 'react-bootstrap/Form';
 import { askChatGpt } from './apiCalls';
 
@@ -22,17 +23,23 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    askChatGpt(formInput).then((resp) => {
+      const ir = {
+        id: resp.id,
+        input: formInput,
+        response: resp.choices[0].message.content,
+      }
+      setInputResponse((prevState) => [...prevState, ir]);
+      setFormInput("");
+    })
   }
 
-
-
   return (
-    <>
+    <div className="m-3">
       <Form onSubmit={handleSubmit}>
         <FloatingLabel
           controlId="floatingInput"
           label="Gimme a Prompt"
-          className="m-3"
         >
           <Form.Control
             type="text"
@@ -43,13 +50,8 @@ export default function App() {
         </FloatingLabel>
       </Form>
       {
-        inputResponse.map((item) => (
-          <>
-            <p>{item.input}</p>
-            <p>{item.response}</p>
-          </>
-        ))
+        inputResponse.map((item) => <ChatCard key={item.id} input={item.input} response={item.response} />)
       }
-    </>
+    </div>
   )
 }

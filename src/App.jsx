@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import ChatCard from './components/ChatCard';
 import Form from 'react-bootstrap/Form';
 import { askChatGpt } from './apiCalls';
 
@@ -33,8 +34,6 @@ export default function App() {
     })
   }
 
-
-
   return (
     <div className="m-3">
       <Form onSubmit={handleSubmit}>
@@ -51,12 +50,7 @@ export default function App() {
         </FloatingLabel>
       </Form>
       {
-        inputResponse.map((item) => (
-          <div key={item.id}>
-            <p>{item.input}</p>
-            <p>{item.response}</p>
-          </div>
-        ))
+        inputResponse.map((item) => <ChatCard key={item.id} input={item.input} response={item.response} />)
       }
     </div>
   )

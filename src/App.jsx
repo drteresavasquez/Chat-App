@@ -2,9 +2,9 @@ import { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import ChatCard from './components/ChatCard';
 import Form from 'react-bootstrap/Form';
-import { askChatGpt } from './apiCalls';
+import { askChatGpt } from './scripts/apiCalls';
 
-import './App.css'
+import './styles/App.css'
 
 export default function App() {
   const [formInput, setFormInput] = useState("")

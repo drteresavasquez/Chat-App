@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-prismjs": "^2.1.0",
     "bootstrap": "^5.2.3",
+    "prism-react-renderer": "^1.2.1",
+    "prismjs": "^1.29.0",
     "react-bootstrap": "^2.7.4"
   },
   "devDependencies": {

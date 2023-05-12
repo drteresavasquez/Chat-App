@@ -6,7 +6,7 @@ import React from 'react';
 
 export default function PulsatingCard() {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card>
       <Card.Header>
         <Placeholder xs={12} size="lg" />
       </Card.Header>

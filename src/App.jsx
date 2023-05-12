@@ -9,6 +9,7 @@ import './styles/App.css'
 export default function App() {
   const [formInput, setFormInput] = useState("")
   const [inputResponse, setInputResponse] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // user enters prompt into text field
   // capture text, send to API, wait on response
@@ -23,6 +24,7 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     askChatGpt(formInput).then((resp) => {
       const ir = {
         id: resp.id,
